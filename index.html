@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İlhan Hakkında Gerçekler</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC0000;
+    --dark-red: #8B0000;
+    --black: #0a0a0a;
+    --off-black: #111;
+    --gold: #D4AF37;
+    --white: #F5F5F0;
+    --gray: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* SCANLINE overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse at center, #1a0000 0%, var(--black) 70%);
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--red), var(--gold), var(--red), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+  }
+
+  .hero-stamp {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .hero-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(5rem, 20vw, 14rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: var(--white);
+    text-shadow:
+      0 0 40px rgba(204,0,0,0.6),
+      0 0 80px rgba(204,0,0,0.3),
+      4px 4px 0px var(--dark-red);
+    animation: pulse-glow 4s ease-in-out infinite;
+    letter-spacing: -0.02em;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 40px rgba(204,0,0,0.6), 0 0 80px rgba(204,0,0,0.3), 4px 4px 0px var(--dark-red); }
+    50% { text-shadow: 0 0 60px rgba(204,0,0,0.9), 0 0 120px rgba(204,0,0,0.5), 4px 4px 0px var(--dark-red); }
+  }
+
+  .hero-subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+
+  .hero-decree {
+    margin-top: 2.5rem;
+    border: 2px solid var(--red);
+    border-radius: 2px;
+    padding: 1.2rem 2.5rem;
+    max-width: 700px;
+    background: rgba(204,0,0,0.08);
+    position: relative;
+  }
+
+  .hero-decree::before, .hero-decree::after {
+    content: '★';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+  .hero-decree::before { left: 1rem; }
+  .hero-decree::after { right: 1rem; }
+
+  .hero-decree p {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: var(--white);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gray);
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== NENE BANNER ===== */
+  .nene-banner {
+    background: var(--red);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nene-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    animation: sweep 3s infinite;
+  }
+
+  @keyframes sweep {
+    0% { left: -60%; }
+    100% { left: 120%; }
+  }
+
+  .nene-banner p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nene-banner p span {
+    color: var(--gold);
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--red), transparent);
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    color: var(--white);
+  }
+
+  .section-title span {
+    color: var(--red);
+  }
+
+  /* ===== FEATURES GRID ===== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: #222;
+    border: 1.5px solid #222;
+  }
+
+  .feature-card {
+    background: var(--off-black);
+    padding: 2rem;
+    transition: background 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--red);
+    transition: height 0.3s ease;
+  }
+
+  .feature-card:hover {
+    background: #1a0000;
+  }
+
+  .feature-card:hover::before {
+    height: 100%;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feature-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    background: var(--off-black);
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 3rem 2rem;
+  }
+
+  .stats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item {}
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--red);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--red), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red);
+  }
+
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-text {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  /* ===== VERDICT ===== */
+  .verdict-section {
+    background: radial-gradient(ellipse at center, #1a0000, var(--black));
+    padding: 8rem 2rem;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid #2a0000;
+  }
+
+  .verdict-stamp {
+    display: inline-block;
+    border: 4px solid var(--red);
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 3rem;
+    transform: rotate(-12deg);
+    position: relative;
+    animation: stamp-appear 1s ease-out;
+    box-shadow: 0 0 40px rgba(204,0,0,0.4), inset 0 0 40px rgba(204,0,0,0.1);
+  }
+
+  @keyframes stamp-appear {
+    0% { transform: rotate(-12deg) scale(3); opacity: 0; }
+    60% { transform: rotate(-12deg) scale(0.95); opacity: 1; }
+    100% { transform: rotate(-12deg) scale(1); }
+  }
+
+  .verdict-stamp-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--red);
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .verdict-main {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+  }
+
+  .verdict-main span {
+    color: var(--red);
+  }
+
+  .verdict-sub {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* ===== COMPLAINT COUNTER ===== */
+  .counter-widget {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: var(--off-black);
+    border: 1px solid #333;
+    padding: 2rem 3rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    user-select: none;
+  }
+
+  .counter-widget:hover {
+    border-color: var(--red);
+  }
+
+  .counter-widget:active {
+    transform: scale(0.97);
+  }
+
+  .counter-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--red);
+    line-height: 1;
+    transition: transform 0.1s;
+  }
+
+  .counter-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .counter-hint {
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: -0.5rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid #222;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--black);
+  }
+
+  .footer-big {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(212,175,55,0.4);
+  }
+
+  .footer-small {
+    font-size: 0.8rem;
+    color: #444;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-wrap {
+    background: var(--red);
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-inner span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--white);
+    margin: 0 3rem;
+  }
+
+  .marquee-inner span.gold {
+    color: var(--gold);
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== SHAKE BUTTON ===== */
+  .shake-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+    margin-top: 2rem;
+  }
+
+  .shake-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    width: 200%;
+    padding-top: 200%;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transition: transform 0.4s ease, opacity 0.4s;
+    opacity: 0;
+  }
+
+  .shake-btn:hover {
+    background: #aa0000;
+  }
+
+  .shake-btn:active::after {
+    transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+    transition: transform 0s, opacity 0s;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px) rotate(-1deg); }
+    20%, 40%, 60%, 80% { transform: translateX(8px) rotate(1deg); }
+  }
+
+  .shaking {
+    animation: shake 0.6s ease-in-out;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #333, transparent);
+    margin: 0 2rem;
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .testimonial {
+    background: var(--off-black);
+    border: 1px solid #1e1e1e;
+    border-left: 3px solid var(--red);
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.65;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  .testimonial-role {
+    font-size: 0.75rem;
+    color: #555;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* ===== LIVE TICKER ===== */
+  .live-ticker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .live-label {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    font-size: 0.9rem;
+  }
+
+  .live-text {
+    color: var(--gray);
+  }
+
+  #live-message {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero-decree { padding: 1rem 2rem; }
+    .hero-decree::before, .hero-decree::after { display: none; }
+    .verdict-stamp { width: 160px; height: 160px; }
+    .verdict-stamp-text { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stamp">⚡ RESMİ BİLDİRİ — KAMUOYUNUN DİKKATİNE ⚡</div>
+  <h1 class="hero-name">İLHAN</h1>
+  <div class="hero-subtitle">Efsane mi? Trajedi mi? İkisi de.</div>
+  <div class="hero-decree">
+    <p>Bu site, İlhan'ın amına koyayım diyen binlerce insanın ortak sesi olarak kurulmuştur. Anayasal hakkımızdır.</p>
+  </div>
+  <div class="scroll-hint">▼ aşağı kaydır ▼</div>
+</section>
+
+<!-- NENE BANNER -->
+<div class="nene-banner">
+  <p>📢 RESMİ AÇIKLAMA: <span>İLHAN'IN NENESİ BENİM KARIMDIR</span> 📢</p>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN NENESİ BENİM KARIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>KOYAYIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN NENESİ BENİM KARIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN NENESİ BENİM KARIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>KOYAYIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN NENESİ BENİM KARIM</span>
+    <span class="gold">★</span>
+    <span>İLHAN'IN AMI</span>
+    <span class="gold">★</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-number" id="stat1">0</span>
+      <div class="stat-label">Toplam Şikâyet</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">∞</span>
+      <div class="stat-label">Sinir Bozuculuk Endeksi</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1</span>
+      <div class="stat-label">Torununu Karıma Veren Nene</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" id="stat2">0</span>
+      <div class="stat-label">Yıllık "Amına Koyayım" Kaydı</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<div class="section">
+  <div class="section-label">Özellikler</div>
+  <h2 class="section-title">İlhan <span>Neden</span> Bu Siteyi Hak Etti?</h2>
+
+  <!-- Live ticker -->
+  <div class="live-ticker">
+    <div class="live-dot"></div>
+    <span class="live-label">CANLI</span>
+    <span class="live-text">Son gelişme:</span>
+    <span id="live-message">İlhan yine bir şey yaptı</span>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🤬</span>
+      <div class="feature-title">Amına Koyayım Butonu</div>
+      <p class="feature-desc">Tek tıkla öfkeni kayıt altına al. Her basışta sayaç artar, İlhan bir yerlerde bunun farkındadır muhtemelen.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">👵</span>
+      <div class="feature-title">Nene Evlilik Belgesi</div>
+      <p class="feature-desc">İlhan'ın nenesinın benim karım olduğu resmi olarak tescillenmiştir. Noterde onaylıdır. İtiraz kabul edilmez.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <div class="feature-title">Sinir Analitikleri</div>
+      <p class="feature-desc">İlhan'ın seni ne kadar sinirlendirdiğini bilimsel yöntemlerle ölçer. Sonuç her zaman aynıdır: ÇOK.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⚖️</span>
+      <div class="feature-title">Halk Mahkemesi</div>
+      <p class="feature-desc">İlhan hakkındaki dava alenî yürütülmektedir. Suçlu bulunma oranı %100'dür. Savunma avukatı göreve gelmeyi reddetmiştir.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📢</span>
+      <div class="feature-title">Sürekli Yayın Bandı</div>
+      <p class="feature-desc">Üstteki şerit durmaksızın gerçeği ilan etmeye devam eder. İnternet var olduğu sürece bu mesaj yayında kalacaktır.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💀</span>
+      <div class="feature-title">Utanç Arşivi</div>
+      <p class="feature-desc">İlhan'ın tarihe geçen anları kronolojik olarak belgelenmiştir. Akademik çevrelerce incelenmektedir.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏆</span>
+      <div class="feature-title">Rezalet Sıralaması</div>
+      <p class="feature-desc">İlhan, "Türkiye'nin En Büyük Rezaleti" listesinde üst sıralarda yer almaktadır. Kendisi bu durumdan habersizdir.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔔</span>
+      <div class="feature-title">Anlık Bildirimler</div>
+      <p class="feature-desc">İlhan yeni bir şey yaptığında seni anında haberdar eder. Bildirimler her 3 dakikada bir gelir. Kapatma butonu yoktur.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌍</span>
+      <div class="feature-title">Küresel Kınama Ağı</div>
+      <p class="feature-desc">Site 47 dile çevrilmiştir. BM Güvenlik Konseyi gündemine girme sürecindedir. Oylama önümüzdeki ay.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TIMELINE -->
+<div class="section">
+  <div class="section-label">Kronoloji</div>
+  <h2 class="section-title">İlhan'ın <span>Utanç Dolu</span> Tarihi</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">DOĞUMUNDAN ÖNCE</div>
+      <p class="timeline-text">Dünya huzur içindeydi. Kuşlar şarkı söylüyor, çiçekler açıyordu.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">DOĞUM GÜNÜ</div>
+      <p class="timeline-text">İlhan dünyaya geldi. Doktor o gün erken emekliliğe ayrıldı. Tesadüf değildir.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">İLK YILLAR</div>
+      <p class="timeline-text">Nenesini tanıdı. Nene ileriki yıllarda benim karım olacaktı. Kader böyle işler.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">BÜYÜME SÜRECİ</div>
+      <p class="timeline-text">İlhan büyüdükçe etrafındakilerin saç dökülme hızı arttı. İstatistiksel korelasyon tartışılmazdır.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">GÜNÜMÜZ</div>
+      <p class="timeline-text">Hâlâ orada bir yerlerde dolaşıyor. İnsanlar amına koyayım diyor. Neni benim karım. Bu döngü devam ediyor.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<div class="section">
+  <div class="section-label">Tanıklıklar</div>
+  <h2 class="section-title">Çevresindekiler <span>Ne Diyor?</span></h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <p class="testimonial-text">"İlhan ile aynı odada bulunmak insanda derin bir varoluş sorgulaması yaratıyor. 'Neden' diye soruyorsun sürekli."</p>
+      <div class="testimonial-author">Anonim Tanık #1</div>
+      <div class="testimonial-role">Hayatta Kalanlar Derneği Üyesi</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">"Nenemin neden bu kadar mutlu göründüğünü şimdi anlıyorum. Tebrikler damat, tebrikler."</p>
+      <div class="testimonial-author">İlhan'ın Uzak Akrabası</div>
+      <div class="testimonial-role">Gönülsüz Şahit</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">"Bu site Türk internetinin zirvesidir. Nobel Ödülü'ne aday gösterilmesi gerekir."</p>
+      <div class="testimonial-author">Kültür Bakanlığı</div>
+      <div class="testimonial-role">Resmi Açıklama (Gayriresmi)</div>
+    </div>
+  </div>
+</div>
+
+<!-- VERDICT -->
+<div class="verdict-section">
+  <div class="verdict-stamp">
+    <div class="verdict-stamp-text">RESMİ<br>MÜHÜRLENDİ<br>★★★</div>
+  </div>
+  <h2 class="verdict-main">Sonuç: İlhan'ın <span>Amına Koyayım</span></h2>
+  <p class="verdict-sub">Bu karar kesindir, temyize kapalıdır ve internet var olduğu müddetçe geçerliliğini koruyacaktır. İlhan'ın nenesinın benim karım olduğu ise ayrıca tescillidir.</p>
+
+  <div id="complaint-counter" class="counter-widget" onclick="incrementCounter()">
+    <div class="counter-number" id="counter-display">0</div>
+    <div class="counter-label">Toplam Amına Koyayım</div>
+    <div class="counter-hint">tıkla • kayıt altına al</div>
+  </div>
+
+  <br>
+  <button class="shake-btn" onclick="shakeAndScream()">🔊 BAĞIR</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-big">İlhan'ın Nenesi = Benim Karım</div>
+  <div class="footer-small">© 2024 Halk Tarafından, Halk İçin, İlhan'ın Aleyhine Kurulmuş Bir Platform</div>
+</footer>
+
+<script>
+  // Animated stats on load
+  function animateNumber(el, target, duration = 2000) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = Math.floor(start).toLocaleString('tr-TR');
+    }, 16);
+  }
+
+  window.addEventListener('load', () => {
+    animateNumber(document.getElementById('stat1'), 847293);
+    animateNumber(document.getElementById('stat2'), 1453, 1500);
+  });
+
+  // Counter
+  let count = parseInt(localStorage.getItem('ilhan_count') || '0');
+  document.getElementById('counter-display').textContent = count;
+
+  function incrementCounter() {
+    count++;
+    localStorage.setItem('ilhan_count', count);
+    const el = document.getElementById('counter-display');
+    el.textContent = count;
+    el.style.transform = 'scale(1.3)';
+    el.style.color = '#ff3333';
+    setTimeout(() => {
+      el.style.transform = 'scale(1)';
+      el.style.color = 'var(--red)';
+    }, 200);
+  }
+
+  // Shake
+  function shakeAndScream() {
+    const btn = document.querySelector('.shake-btn');
+    document.body.style.animation = 'none';
+    btn.classList.remove('shaking');
+    void btn.offsetWidth;
+    btn.classList.add('shaking');
+
+    // Flash screen red briefly
+    const flash = document.createElement('div');
+    flash.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(204,0,0,0.15);z-index:9998;pointer-events:none;';
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 400);
+
+    incrementCounter();
+  }
+
+  // Live ticker messages
+  const messages = [
+    "İlhan yine bir şey yaptı",
+    "Nene mutlu, sebep: beni buldu",
+    "İlhan'ın amına koyayım sayısı rekor kırdı",
+    "İlhan'ın bulunduğu ilde sağanak uyarısı çıkarıldı",
+    "Uzmanlar: İlhan'ın varlığı açıklanamıyor",
+    "BM: İlhan meselesi gündemde",
+    "Nene: 'Yeni hayatımdan memnunum'",
+    "İlhan haberdar olmadan fotoğrafı çekildi, kaçtı",
+    "Mahkeme İlhan aleyhine oy birliğiyle karar verdi",
+  ];
+
+  let msgIdx = 0;
+  const liveEl = document.getElementById('live-message');
+
+  setInterval(() => {
+    msgIdx = (msgIdx + 1) % messages.length;
+    liveEl.style.opacity = '0';
+    setTimeout(() => {
+      liveEl.textContent = messages[msgIdx];
+      liveEl.style.opacity = '1';
+    }, 300);
+  }, 4000);
+
+  liveEl.style.transition = 'opacity 0.3s';
+</script>
+</body>
+</html>
